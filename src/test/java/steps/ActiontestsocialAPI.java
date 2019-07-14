@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import io.restassured.response.Response;
 import junit.framework.Assert;
 
-public class Actiontestscocial {
+public class ActiontestsocialAPI {
 public void send_Get_request(String url){
 	Response response = given().
 	when().

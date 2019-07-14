@@ -7,9 +7,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import io.restassured.http.ContentType;
 
-public class testScocialAccountAPI {
+public class testsocialAccountAPI {
 	String url="";
-	Actiontestscocial act = new Actiontestscocial();
+	ActiontestsocialAPI act = new ActiontestsocialAPI();
 	@Given("^send GET request \"([^\"]*)\"$")
 	public void send_GET_request(String url) throws Throwable {
 		this.url =url;
