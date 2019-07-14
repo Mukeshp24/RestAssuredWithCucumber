@@ -14,7 +14,7 @@ public void send_Get_request(String url){
 	get(url).
 	
 	then().extract().response();
-	Assert.assertEquals(200, response.getStatusCode());
+	Assert.assertEquals(300, response.getStatusCode());
 	
 	
 }
