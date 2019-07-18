@@ -10,7 +10,8 @@ import cucumber.api.junit.Cucumber;
 		features ="C:\\Users\\mukesh\\workspace\\RestAssuredWithCucumber\\src\\test\\java\\featureFiles\\getPost.feature",
 		glue = "steps"
 		, dryRun = false ,
-				plugin = {"pretty", "html:target/cucumber","rerun:target/rerun.txt"},//Creates a text file with failed scenarios
+				plugin = {"pretty","rerun:target/rerun.txt","html:target/cucumber-html-report","json:target/cucumber.json", "pretty:target/cucumber-pretty.txt",
+				        "usage:target/cucumber-usage.json","junit:target/cucumber-results.xml"},//Creates a text file with failed scenarios
 		monochrome = true 
 		
 		)

@@ -25,7 +25,7 @@ public void then_responce_code_should_be(String url){
 	when().
 	get(url).
 	 then().
-	  assertThat().statusCode(201);
+	  assertThat().statusCode(200);
 }
 public void veryfy_total_pages_are(String url){
 	given().
