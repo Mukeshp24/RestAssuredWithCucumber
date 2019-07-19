@@ -36,4 +36,6 @@ public void veryfy_total_pages_are(String url){
 
        body("total_pages",equalTo(4));
 }
+
+
 }
