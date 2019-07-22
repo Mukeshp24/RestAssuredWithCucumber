@@ -16,5 +16,5 @@ Scenario: adding a user in DB
 Scenario: validating json body 
 	Given send GET request "https://reqres.in/api/users?page=2" and get all user details in json body then validate it
 		|4    | eve.holt@reqres.in      |Eve     |Holt  |
-		|5    | charles.morris@reqres.in|Charles |Morris|
+		|4    | charles.morris@reqres.in|Charles |Morris|
 	    |6    |tracey.ramos@reqres.in   |Tracey  |Ramos |
