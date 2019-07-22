@@ -59,7 +59,7 @@ public class testsocialAccountAPI {
 	               	
 	               
 	               	 .then()
-	               	  .assertThat().statusCode(201).log().all();
+	               	  .assertThat().statusCode(rescode).log().all();
 	               	  
 	               	  
 	                
