@@ -7,7 +7,7 @@ Scenario: test list of user on friendbook site
 	
 	#Sending a post request
 Scenario: adding a user in DB 
-	Given send post request "https://reqres.in/api/users" and responce code should be 200
+	Given send post request "https://reqres.in/api/users" and responce code should be 201
 		|name | morpheus|
 		|job  | leader  |
 	
@@ -18,3 +18,6 @@ Scenario: validating json body
 		|4    | eve.holt@reqres.in      |Eve     |Holt  |
 		|5    | charles.morris@reqres.in|Charles |Morris|
 	    |6    |tracey.ramos@reqres.in   |Tracey  |Ramos |
+	    
+	    
+	    

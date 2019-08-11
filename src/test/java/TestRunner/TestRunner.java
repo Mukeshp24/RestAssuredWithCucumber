@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features ={"C:\\Users\\mukesh\\workspace\\RestAssuredWithCucumber\\src\\test\\java\\featureFiles\\getPost.feature" },
+		features ={"classpath:features" },
 		glue = "steps",
 		//tags = {"@currentTest"},
 		 dryRun = false ,

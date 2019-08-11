@@ -57,7 +57,6 @@ public class testsocialAccountAPI {
 	               	.when()
 	               	.post(url)
 	               	
-	               
 	               	 .then()
 	               	  .assertThat().statusCode(rescode).log().all();
 	               	  
