@@ -6,8 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.HashMap;
 import java.util.List;
 
-import com.model.ck.Datum;
-import com.model.ck.Users;
+
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
@@ -16,6 +15,9 @@ import cucumber.runtime.junit.Assertions;
 import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
+import model.ck.Datum;
+import model.ck.Users;
+
 import static org.junit.Assert.*;
 
 public class testsocialAccountAPI {
