@@ -12,41 +12,61 @@ import com.model.ck.Users;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.runtime.junit.Assertions;
 import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
-import junit.framework.Assert;
+import static org.junit.Assert.*;
 
 public class testsocialAccountAPI {
 	String url = "";
-	ActiontestsocialAPI act = new ActiontestsocialAPI();
+
 
 	@Given("^send GET request \"([^\"]*)\"$")
 	public void send_GET_request(String url) throws Throwable {
 		this.url = url;
 
-		act.send_Get_request(url);
+		Response response = given().
+				
+				when().
+				
+				get(url).
+				
+				then().assertThat().statusCode(200).
+				extract().response();
 
 	}
 
 	@Then("^then responce code should be (\\d+)$")
-	public void then_responce_code_should_be(int arg1) throws Throwable {
+	public void then_responce_code_should_be(int statusCode) throws Throwable {
 
-		act.then_responce_code_should_be(url);
+		given().
+		when().
+		    get(url).
+		 then().
+		    assertThat().statusCode(statusCode);
+	   
 	}
 
 	@Then("^veryfy total pages are (\\d+)$")
-	public void veryfy_total_pages_are(int arg1) throws Throwable {
-		act.veryfy_total_pages_are(url);
+	public void veryfy_total_pages_are(int totalPages) throws Throwable {
+		given().
+		when().
+		    get(url).
+		then().
+		    assertThat().
+	        body("total_pages",equalTo(totalPages));
 
 	}
 	
 	@Given("^send post request \"([^\"]*)\" and responce code should be (\\d+)$")
 	public void send_post_request_and_responce_code_should_be(String url, int rescode, DataTable data) throws Throwable {
-	    List <List<String>> lsdata=data.raw();
+	    List <List<String>> lsdata = data.raw();
 	    
 	    HashMap<String,String> bd = new HashMap<String, String>();
+	    
 	                   for(int i=0;i<lsdata.size();i++){
+	                	   
 	                           bd.put(lsdata.get(i).get(0), lsdata.get(i).get(1));
 	                   }
 	                  
@@ -72,24 +92,26 @@ public class testsocialAccountAPI {
 		
 		 List <List<String>> lsdata=data.raw();
 		    
-		 Response res= given()
-				      .get(url)
-					  .then()
+		 Response res = given()
+				            .get(url)
+				      
+					    .then()
 					.assertThat().log().all().extract().response();
+		 
 					 Users users = res.as(Users.class,ObjectMapperType.GSON);
 					 
-					 List< Datum> oblist  = users.getData();
+					 List<Datum> oblist  = users.getData();
 					
 				
 				 
 					 for(int i=0;i<oblist.size();i++){
+						
+						  assertEquals((int)oblist.get(i).getId(),Integer.parseInt(lsdata.get(i).get(0)));
 					
-					Assert.assertEquals((int)oblist.get(i).getId(),Integer.parseInt(lsdata.get(i).get(0)));
-					
-					Assert.assertEquals(oblist.get(i).getEmail(),lsdata.get(i).get(1) );
-					Assert.assertEquals(oblist.get(i).getFirstName(),lsdata.get(i).get(2) );
-					Assert.assertEquals(oblist.get(i).getLastName(),lsdata.get(i).get(3) );
-					 
+					      assertEquals(oblist.get(i).getEmail(),lsdata.get(i).get(1) );
+					      assertEquals(oblist.get(i).getFirstName(),lsdata.get(i).get(2) );
+					      assertEquals(oblist.get(i).getLastName(),lsdata.get(i).get(3) );
+					   
 				 }
 	}
 
