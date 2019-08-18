@@ -26,3 +26,8 @@ Scenario: validating all first_name of employees from json body
 		|Eve     |
 		|Charles |
 	    |Tracey  |
+	    
+	   #reading JSON File and sending Put request Update a Employee details
+Scenario: Update Employee details
+	Given Get updated employees details json file "C:\\Users\\mukesh\\workspace\\RestAssuredWithCucumber\\src\\test\\resources\\JsonFiles\\emp.json"
+	Then  send PUT request "https://reqres.in/api/users/2" and validate it

@@ -3,14 +3,18 @@ package steps;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 
-
+import org.apache.commons.io.IOUtils;
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import cucumber.runtime.junit.Assertions;
 import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
@@ -23,7 +27,7 @@ import static org.junit.Assert.*;
 
 public class testsocialAccountAPI {
 	String url = "";
-
+	FileInputStream fis;
 
 	@Given("^send GET request \"([^\"]*)\"$")
 	public void send_GET_request(String url) throws Throwable {
@@ -135,6 +139,22 @@ Response response = given()
 					   }
 					 
 	}
+	@Given("^Get updated employees details json file \"([^\"]*)\"$")
+	public void get_updated_employees_details_json_file(String JsonFilePath) throws Throwable {
+		 fis = new FileInputStream(new File(JsonFilePath));
+	}
+
+	@Then("^send PUT request \"([^\"]*)\" and validate it$")
+	public void send_PUT_request_and_validate_it(String url) throws Throwable {
+	   Response response = given()
+	  .body(IOUtils.toString(fis, "UTF-8"))
+	  .when()
+	  .put(url)
+	  .then().statusCode(200).log().all().extract().response();
+	   System.err.println(response.asString());
+	   
+	}
+
 
 
 }
