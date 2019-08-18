@@ -14,6 +14,7 @@ import cucumber.api.java.en.Then;
 import cucumber.runtime.junit.Assertions;
 import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import model.ck.Datum;
 import model.ck.Users;
@@ -87,7 +88,7 @@ public class testsocialAccountAPI {
 	                   
 	}
 	
-	@SuppressWarnings("deprecation")
+	
 	@Given("^send GET request \"([^\"]*)\" and get all user details in json body then validate it$")
 	public void send_GET_request_and_get_all_user_details_in_json_body_then_validate_it(String url, DataTable data) throws Throwable {
 		
@@ -115,6 +116,24 @@ public class testsocialAccountAPI {
 					      assertEquals(oblist.get(i).getLastName(),lsdata.get(i).get(3) );
 					   
 				 }
+	}
+	@Given("^GET employees \"([^\"]*)\"$")
+	public void get_employees(String url, DataTable data) throws Throwable {
+		List <List<String>> lsdata=data.raw();
+		
+Response response = given()
+				  .header("Content-Type", "application/json")
+				  .when()
+				  .get(url)
+				  .then().assertThat().statusCode(200).extract().response();
+				    JsonPath x=new JsonPath(response.asString());
+				    int count=x.get("data.size()");
+				    for(int i=0;i<count;i++)
+					   {
+				    	assertEquals(lsdata.get(i).get(0),x.get("data["+i+"].first_name") );
+				
+					   }
+					 
 	}
 
 

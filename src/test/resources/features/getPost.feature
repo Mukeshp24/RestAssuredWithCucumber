@@ -12,7 +12,7 @@ Scenario: adding a user in DB
 		|job  | leader  |
 	
 	  
-	  #validate large and complex json body with json to pojo class maping
+	   #validate complex json body with json to pojo class maping
 Scenario: validating json body 
 	Given send GET request "https://reqres.in/api/users?page=2" and get all user details in json body then validate it
 		|4    | eve.holt@reqres.in      |Eve     |Holt  |
@@ -20,4 +20,9 @@ Scenario: validating json body
 	    |6    |tracey.ramos@reqres.in   |Tracey  |Ramos |
 	    
 	    
-	    
+	   #Fetching multiple Elements from json body with Jsonpath
+Scenario: validating all first_name of employees from json body 
+	Given GET employees "https://reqres.in/api/users?page=2"
+		|Eve     |
+		|Charles |
+	    |Tracey  |
