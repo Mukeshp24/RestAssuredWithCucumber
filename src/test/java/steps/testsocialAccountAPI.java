@@ -33,14 +33,13 @@ public class testsocialAccountAPI {
 	public void send_GET_request(String url) throws Throwable {
 		this.url = url;
 
-		Response response = given().
+		        given().
 				
 				when().
 				
 				get(url).
 				
-				then().assertThat().statusCode(200).
-				extract().response();
+				then().assertThat().statusCode(200);
 
 	}
 
@@ -78,13 +77,13 @@ public class testsocialAccountAPI {
 	                   }
 	                  
 	                given()
-	                		.contentType(ContentType.JSON)
-	                .body(bd)
+	                  .contentType(ContentType.JSON)
+	                  .body(bd)
 	                
 	               	.when()
-	               	.post(url)
+	               	  .post(url)
 	               	
-	               	 .then()
+	               	.then()
 	               	  .assertThat().statusCode(rescode).log().all();
 	               	  
 	               	  
