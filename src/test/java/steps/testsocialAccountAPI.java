@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 
+import Utiles.ReadEXCELFiles;
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -99,7 +100,7 @@ public class testsocialAccountAPI {
 		 List <List<String>> lsdata=data.raw();
 		    
 		 Response res = given()
-				            .get(url)
+				        .get(url)
 				      
 					    .then()
 					.assertThat().log().all().extract().response();
@@ -110,7 +111,7 @@ public class testsocialAccountAPI {
 					
 				
 				 
-					 for(int i=0;i<oblist.size();i++){
+					 for(int i=0;i<lsdata.size();i++){
 						
 						  assertEquals((int)oblist.get(i).getId(),Integer.parseInt(lsdata.get(i).get(0)));
 					
@@ -150,8 +151,23 @@ Response response = given()
 	  .when()
 	  .put(url)
 	  .then().statusCode(200).log().all().extract().response();
-	   System.err.println(response.asString());
+	   System.out.println(response.asString());
 	   
+	}
+	
+	
+	@When("^I am on the amps mainscreen$")
+	public void i_am_on_the_amps_mainscreen() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    
+	}
+
+	@Then("^I input username and passwords with excel row\"([^\"]*)\" dataset$")
+	public void i_input_username_and_passwords_with_excel_row_dataset(String rownum) throws Throwable {
+	    List readExcel = ReadEXCELFiles.readExcel(Integer.valueOf(rownum));
+	    
+	    System.out.println(readExcel.get(0));
+	    System.out.println(readExcel.get(1));
 	}
 
 
