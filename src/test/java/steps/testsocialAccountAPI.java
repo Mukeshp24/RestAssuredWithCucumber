@@ -85,7 +85,7 @@ public class testsocialAccountAPI {
 	               	  .post(url)
 	               	
 	               	.then()
-	               	  .assertThat().statusCode(rescode).log().all();
+	               	  .assertThat().statusCode(rescode);
 	               	  
 	               	  
 	                
@@ -103,7 +103,7 @@ public class testsocialAccountAPI {
 				        .get(url)
 				      
 					    .then()
-					.assertThat().log().all().extract().response();
+					.assertThat().extract().response();
 		 
 					 Users users = res.as(Users.class,ObjectMapperType.GSON);
 					 
@@ -150,8 +150,8 @@ Response response = given()
 	  .body(IOUtils.toString(fis, "UTF-8"))
 	  .when()
 	  .put(url)
-	  .then().statusCode(200).log().all().extract().response();
-	   System.out.println(response.asString());
+	  .then().statusCode(200).extract().response();
+	  // System.out.println(response.asString());
 	   
 	}
 	
