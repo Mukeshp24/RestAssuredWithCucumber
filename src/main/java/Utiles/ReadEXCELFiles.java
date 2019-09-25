@@ -17,7 +17,7 @@ public class ReadEXCELFiles {
 	
 	public static List readExcel (int row) throws IOException{
 
-	    File src=new File("G://username.xlsx");
+	    File src=new File("C:\\Users\\mukesh\\workspace\\RestAssuredWithCucumber\\Library\\username.xlsx");
 	    FileInputStream fis=new FileInputStream(src);
 	    XSSFWorkbook srcBook= new XSSFWorkbook(fis);
 	    XSSFSheet sourceSheet = srcBook.getSheetAt(0);
@@ -31,13 +31,7 @@ public class ReadEXCELFiles {
 	    userlogin.add(userExcel);
 	    userlogin.add(pwExcel);
 	    return userlogin;
-	   // System.out.println("The username is  " +userExcel);
-	   // System.out.println("The password is  " +pwExcel);
-	   // log.info("The username on " +row + " is: "+userExcel);
-	   // log.info("The password on "+row+ " is: "+pwExcel);
-	   // driver.findElement(txtbox_username).sendKeys(userExcel);
-	   // driver.findElement(txtbox_password).sendKeys(pwExcel);
-	   // driver.findElement(btn_logon).click();
+	   
 
 	}
 }
